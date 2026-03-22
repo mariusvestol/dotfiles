@@ -1,0 +1,5 @@
+dash-to-dock@micxgx.gmail.com
+search-light@icedman.github.com
+compiz-alike-magic-lamp-effect@hermes83.github.com
+blur-my-shell@aunetx
+tiling-assistant@ubuntu.com
