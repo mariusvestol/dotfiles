@@ -5,7 +5,7 @@ Automatisk oppsett av en fersk Ubuntu-installasjon med macOS Sonoma-utseende og 
 ## Bruk
 
 ```bash
-git clone https://github.com/DITT-BRUKERNAVN/dotfiles.git
+git clone https://github.com/mariusvestol/dotfiles.git
 cd dotfiles
 ./setup.sh
 ```
