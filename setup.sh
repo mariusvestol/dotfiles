@@ -103,6 +103,9 @@ gsettings set org.gnome.desktop.interface icon-theme 'WhiteSur'
 gsettings set org.gnome.desktop.interface cursor-theme 'WhiteSur-cursors'
 gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:'
 
+# Tastatur: swap Alt/Cmd(Super) og Ctrl/Alt
+gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:swap_lalt_lctl', 'altwin:swap_alt_win']"
+
 # GNOME extensions
 echo ""
 echo "--- GNOME extensions ---"

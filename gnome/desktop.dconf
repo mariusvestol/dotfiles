@@ -38,7 +38,7 @@ secondary-color='#455a85'
 
 [input-sources]
 sources=[('xkb', 'no')]
-xkb-options=['ctrl:swap_lalt_lctl']
+xkb-options=['ctrl:swap_lalt_lctl', 'altwin:swap_alt_win']
 
 [interface]
 color-scheme='default'
