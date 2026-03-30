@@ -30,6 +30,35 @@ if ! command -v code &>/dev/null; then
     echo "VS Code installert."
 fi
 
+# VS Code: auto dark/light theme
+echo ""
+echo "--- Konfigurerer VS Code dark/light mode ---"
+VSCODE_SETTINGS="$HOME/.config/Code/User/settings.json"
+mkdir -p "$(dirname "$VSCODE_SETTINGS")"
+if [ -f "$VSCODE_SETTINGS" ]; then
+    # Legg til auto color scheme-innstillinger via python
+    python3 -c "
+import json, sys
+with open('$VSCODE_SETTINGS', 'r') as f:
+    s = json.load(f)
+s['window.autoDetectColorScheme'] = True
+s['workbench.preferredLightColorTheme'] = 'Orange Light'
+s['workbench.preferredDarkColorTheme'] = 'Orange Juice Theme'
+s.pop('workbench.colorTheme', None)
+with open('$VSCODE_SETTINGS', 'w') as f:
+    json.dump(s, f, indent=4)
+"
+else
+    cat > "$VSCODE_SETTINGS" <<'EOJSON'
+{
+    "window.autoDetectColorScheme": true,
+    "workbench.preferredLightColorTheme": "Orange Light",
+    "workbench.preferredDarkColorTheme": "Orange Juice Theme"
+}
+EOJSON
+fi
+echo "VS Code dark/light mode konfigurert."
+
 # Installer Slack
 if ! command -v slack &>/dev/null; then
     echo ""
@@ -55,13 +84,10 @@ echo ""
 echo "--- Installerer apt-pakker ---"
 xargs -a "$DOTFILES_DIR/linux/packages.txt" sudo apt install -y
 
-# Installer snap-pakker
+# Installer pakker fra snaps.txt via apt
 echo ""
-echo "--- Installerer snap-pakker ---"
-while IFS= read -r line; do
-    [ -z "$line" ] && continue
-    sudo snap install $line
-done < "$DOTFILES_DIR/linux/snaps.txt"
+echo "--- Installerer pakker fra snaps.txt via apt ---"
+xargs -a "$DOTFILES_DIR/linux/snaps.txt" sudo apt install -y
 
 # WhiteSur macOS Sonoma-tema
 echo ""
